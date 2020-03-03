@@ -8,7 +8,9 @@
       <el-form-item label="密码">
         <el-input v-model="formdata.password"></el-input>
       </el-form-item>
-      <el-button class="login-btn" type="success">登录</el-button>
+      <el-button
+      @click="hanleLogin()"
+      class="login-btn" type="success">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -22,9 +24,45 @@ export default {
         password: ''
       }
     }
+  },
+  methods: {
+    // 发送登录
+    hanleLogin () {
+      this.$http.post(`login`, this.formdata).then((res) => {
+        console.log(res)
+        const {
+          data: {
+            data,
+            meta: { msg, status }}} = res
+        if (status === 200) {
+          console.log('success-----')
+        } else {
+          this.$message.error(msg)
+        }
+      })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.login-warp {
+  height: 100%;
+  background-color: #324152;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  background-color: #ffffff;
+  border-radius: 5px;
+  width: 400px;
+  padding: 30px;
+}
+.login-btn {
+  width: 100%;
+}
 </style>
