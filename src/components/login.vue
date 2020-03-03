@@ -39,6 +39,7 @@ export default {
         this.$router.push({
           name: 'home'
         })
+        this.$message.success('登录成功')
       } else {
         this.$message.error(msg)
       }
