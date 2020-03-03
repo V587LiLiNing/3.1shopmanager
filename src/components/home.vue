@@ -1,6 +1,18 @@
 <template>
   <el-container class="container">
-    <el-header>Header</el-header>
+    <el-header>
+      <el-row>
+        <el-col :span="4">
+          <img src="@/assets/logo.png" alt="图片加载失败" />
+        </el-col>
+        <el-col :span="19" class="middle">
+          <h2>商城后台管理系统</h2>
+        </el-col>
+        <el-col :span="1">
+           <el-button type="danger" class="logout" size="mini" plain>退出</el-button>
+        </el-col>
+      </el-row>
+    </el-header>
     <el-container>
       <el-aside class="aside" width="200px">Aside</el-aside>
       <el-main class="main">Main</el-main>
@@ -8,17 +20,25 @@
   </el-container>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style>
 .container {
   height: 100%;
-  background-color: red;
+  background-color: #b3c0d1;
 }
 .aside {
   background-color: green;
 }
 .main {
   background-color: yellow;
+}
+.middle {
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+}
+.logout {
+    margin-top: 15px;
 }
 </style>
