@@ -9,7 +9,9 @@
           <h2>商城后台管理系统</h2>
         </el-col>
         <el-col :span="1">
-          <el-button type="danger" class="logout" size="mini" plain>退出</el-button>
+          <el-button
+          @click="handlelogout()"
+          type="danger" class="logout" size="mini" plain>退出</el-button>
         </el-col>
       </el-row>
     </el-header>
@@ -105,6 +107,21 @@ export default {
         name: 'login'
       })
       this.$message.warning('请先登录')
+    }
+  },
+  mounted () {
+  },
+  methods: {
+    // 退出功能
+    handlelogout () {
+      // 1. 清除token
+      localStorage.clear()
+      // 2. 跳转登录页
+      this.$router.push({
+        name: 'login'
+      })
+      // 3. 提示
+      this.$message.success('退出成功')
     }
   }
 }
