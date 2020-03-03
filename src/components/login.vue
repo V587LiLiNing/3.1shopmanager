@@ -27,8 +27,23 @@ export default {
   },
   methods: {
     // 发送登录
-    hanleLogin () {
-      this.$http.post(`login`, this.formdata).then((res) => {
+    async hanleLogin () {
+      const res = await this.$http.post(`login`, this.formdata)
+      console.log(res);
+      const {data: {data: {token}, meta: { msg, status }}} = res
+      if (status === 200) {
+        // console.log('success-----')
+        // 使用localstorage 本地存储保存token
+        localStorage.setItem('token', token)
+        // 成功跳转至home组件-> js方式改标识
+        this.$router.push({
+          name: 'home'
+        })
+      } else {
+        this.$message.error(msg)
+      }
+      /**
+      .then((res) => {
         console.log(res)
         // 对象解构赋值
         const {
@@ -48,6 +63,7 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+       */
     }
   }
 }
