@@ -30,12 +30,17 @@ export default {
     hanleLogin () {
       this.$http.post(`login`, this.formdata).then((res) => {
         console.log(res)
+        // 对象解构赋值
         const {
           data: {
             data,
             meta: { msg, status }}} = res
         if (status === 200) {
-          console.log('success-----')
+          // console.log('success-----')
+          // 成功跳转至home组件-> js方式改标识
+          this.$router.push({
+            name: 'home'
+          })
         } else {
           this.$message.error(msg)
         }
