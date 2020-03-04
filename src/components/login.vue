@@ -44,6 +44,7 @@ export default {
         this.$message.error(msg)
       }
       /**
+      this.$http.post(`login`, this.formdata)
       .then((res) => {
         console.log(res)
         // 对象解构赋值
