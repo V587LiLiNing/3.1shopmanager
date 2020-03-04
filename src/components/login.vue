@@ -30,11 +30,11 @@ export default {
     async hanleLogin () {
       const res = await this.$http.post(`login`, this.formdata)
       console.log(res)
-      const {data: {data: {token}, meta: { msg, status }}} = res
+      const {data: {data, meta: { msg, status }}} = res
       if (status === 200) {
         // console.log('success-----')
         // 使用localstorage 本地存储保存token
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', data.token)
         // 成功跳转至home组件-> js方式改标识
         this.$router.push({
           name: 'home'
